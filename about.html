@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us | STRIKE</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @keyframes deploy {
+      0% {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .deploy {
+      animation: deploy 1s ease-out forwards;
+    }
+
+    .deploy-delay-1 {
+      animation-delay: 0.3s;
+    }
+
+    .deploy-delay-2 {
+      animation-delay: 0.6s;
+    }
+
+    .deploy-delay-3 {
+      animation-delay: 0.9s;
+    }
+  </style>
+</head>
+<body class="bg-black text-gray-100">
+
+  <section class="py-16 px-6 lg:px-24">
+    <div class="max-w-6xl mx-auto text-center deploy">
+      <h2 class="text-4xl font-extrabold text-[#c6ff00] tracking-wide mb-6 uppercase">
+        Meet Our Mentors
+      </h2>
+      <p class="text-gray-300 max-w-3xl mx-auto text-lg leading-relaxed">
+        STRIKE stands for passion, precision, and perseverance.  
+        Guided by IITian mentors, we combine discipline and innovation —  
+        training the next generation of warriors to conquer the tech battlefield.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-10 items-center max-w-6xl mx-auto mt-16">
+      <!-- Mentor 1 -->
+      <div class="bg-[#0f0f0f] p-6 rounded-2xl shadow-xl border border-[#2f2f2f] hover:border-[#c6ff00] transition deploy deploy-delay-1">
+        <img src="./Bhaiyaaa.jpg" alt="Mentor 1" class="w-full h-80 object-cover rounded-xl mb-6 border border-[#c6ff00]/40" />
+        <h3 class="text-2xl font-bold text-[#c6ff00] mb-2">Rohit Negi</h3>
+        <p class="text-gray-400">IITian | Tech Enthusiast | Fitness & Focus Driven</p>
+        <p class="mt-3 text-gray-300 text-sm">
+          Heartfelt Problem Solver, Instructor, and Visionary Leader. Got Highest Placement in India of 2 Cr +. Post Graduate from IIT G, GATE-CSE'20 AIR - 202
+        </p>
+      </div>
+
+      <!-- Mentor 2 -->
+      <div class="bg-[#0f0f0f] p-6 rounded-2xl shadow-xl border border-[#2f2f2f] hover:border-[#c6ff00] transition deploy deploy-delay-2">
+        <img src="./adityaa.jpg" alt="Mentor 2" class="w-full h-80 object-cover rounded-xl mb-6 border border-[#c6ff00]/40" />
+        <h3 class="text-2xl font-bold text-[#c6ff00] mb-2">aditya tandon</h3>
+        <p class="text-gray-400">IITian | Software Engineer | Coder Army Mentor</p>
+        <p class="mt-3 text-gray-300 text-sm">
+          Senior Software Engineer passionate about scalable systems and elegant algorithms. Dedicated mentor committed to teaching, learning, and inspiring future developers.
+        </p>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>

@@ -1,0 +1,461 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>STRIKE - Train Hard. Learn Smart.</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet" />
+    <style>
+      * {
+          cursor: crosshair;
+      }
+
+      body {
+          font-family: 'Rajdhani', sans-serif;
+      }
+              /* Fade In Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .fade-in-delay-1 { animation-delay: 0.2s; opacity: 0; }
+        .fade-in-delay-2 { animation-delay: 0.4s; opacity: 0; }
+        .fade-in-delay-3 { animation-delay: 0.6s; opacity: 0; }
+
+        /* Radar Scan Animation */
+        @keyframes radar-scan {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .radar-line {
+            animation: radar-scan 4s linear infinite;
+        }
+
+        /* Target Lock Animation */
+        @keyframes target-lock {
+            0%, 100% { transform: scale(1); opacity: 0.4; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        .target-lock {
+            animation: target-lock 2s ease-in-out infinite;
+        }
+
+        /* Morse Code Blink */
+        @keyframes morse-blink {
+            0%, 20%, 40%, 60%, 80%, 100% { opacity: 0.2; }
+            10%, 30%, 50%, 70%, 90% { opacity: 1; }
+        }
+
+        .morse-dot {
+            animation: morse-blink 3s ease-in-out infinite;
+        }
+
+        /* Scanner Line Effect */
+        @keyframes scanner {
+            0% { top: 0%; }
+            50% { top: 100%; }
+            100% { top: 0%; }
+        }
+
+        .scanner-line {
+            animation: scanner 3s ease-in-out infinite;
+        }
+
+        /* Military Grid Background */
+        .grid-bg {
+            background-image:
+                linear-gradient(rgba(163, 230, 53, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(163, 230, 53, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+
+        /* Tactical Shake */
+        @keyframes tactical-shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-2px); }
+            20%, 40%, 60%, 80% { transform: translateX(2px); }
+        }
+
+        .hero-title:hover {
+            animation: tactical-shake 0.5s ease;
+        }
+
+        /* Crosshair Animation */
+        @keyframes crosshair-pulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.6;
+            }
+            50% {
+                transform: scale(1.2);
+                opacity: 1;
+            }
+        }
+
+        .crosshair {
+            animation: crosshair-pulse 2s ease-in-out infinite;
+        }
+
+        /* Terminal Text Effect */
+        @keyframes terminal-flicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        .terminal-text {
+            animation: terminal-flicker 0.1s ease-in-out infinite;
+            text-shadow: 0 0 10px rgba(163, 230, 53, 0.5);
+        }
+
+        /* Ammo Counter Animation */
+        @keyframes ammo-reload {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+
+        .ammo-bar {
+            animation: ammo-reload 3s ease-in-out infinite;
+        }
+
+      .font-orbitron {
+          font-family: 'Orbitron', sans-serif;
+      }
+
+      /* Gradient Text Animation */
+      @keyframes gradient-shift {
+          0%, 100% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+      }
+
+      .gradient-text {
+          background: linear-gradient(90deg, #a3e635, #84cc16, #65a30d, #84cc16, #a3e635);
+          background-size: 200% auto;
+          -webkit-background-clip: text;
+          background-clip: text;
+          -webkit-text-fill-color: transparent;
+          animation: gradient-shift 3s ease infinite;
+      }
+
+      /* Glow Effect */
+      @keyframes glow-pulse {
+          0%, 100% { box-shadow: 0 0 20px rgba(163, 230, 53, 0.4), 0 0 40px rgba(163, 230, 53, 0.2); }
+          50% { box-shadow: 0 0 30px rgba(163, 230, 53, 0.6), 0 0 60px rgba(163, 230, 53, 0.3); }
+      }
+
+      .glow-border {
+          animation: glow-pulse 2s ease-in-out infinite;
+      }
+
+      /* Typewriter Effect */
+      @keyframes typewriter {
+          from { width: 0; }
+          to { width: 100%; }
+      }
+
+      @keyframes blink {
+          50% { border-color: transparent; }
+      }
+
+      .typewriter {
+          overflow: hidden;
+          border-right: 3px solid #a3e635;
+          white-space: nowrap;
+          animation: typewriter 4s steps(40) 1s forwards, blink 0.75s step-end infinite;
+          display: inline-block;
+      }
+
+      /* Background Gradient Animation */
+      @keyframes bg-pulse {
+          0%, 100% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+      }
+
+      .animated-bg {
+          background: linear-gradient(135deg, #0b0f0d 0%, #1a1f1c 25%, #0f1410 50%, #1a1f1c 75%, #0b0f0d 100%);
+          background-size: 400% 400%;
+          animation: bg-pulse 15s ease infinite;
+      }
+
+      /* Hover Underline Animation */
+      .nav-link {
+          position: relative;
+          transition: color 0.3s ease;
+      }
+
+      .nav-link::after {
+          content: '';
+          position: absolute;
+          bottom: -4px;
+          left: 0;
+          width: 0;
+          height: 2px;
+          background: linear-gradient(90deg, #a3e635, #84cc16);
+          transition: width 0.3s ease;
+          box-shadow: 0 0 10px #a3e635;
+      }
+
+      .nav-link:hover::after {
+          width: 100%;
+      }
+
+      /* Card Hover Effect */
+      .course-card {
+          transition: all 0.4s ease;
+          position: relative;
+      }
+
+      .course-card:hover {
+          transform: translateY(-12px);
+          box-shadow: 0 20px 50px rgba(163, 230, 53, 0.3), 0 0 30px rgba(163, 230, 53, 0.2);
+      }
+
+      /* Rank Stripe Divider */
+      .rank-stripe {
+          height: 4px;
+          background: repeating-linear-gradient(
+              90deg,
+              #a3e635 0px,
+              #a3e635 20px,
+              #1a1f1c 20px,
+              #1a1f1c 40px
+          );
+          box-shadow: 0 0 15px rgba(163, 230, 53, 0.5);
+      }
+
+      /* CTA Button Animation */
+      @keyframes border-glow {
+          0%, 100% {
+              border-color: #a3e635;
+              box-shadow: 0 0 20px rgba(163, 230, 53, 0.4), inset 0 0 20px rgba(163, 230, 53, 0.1);
+          }
+          50% {
+              border-color: #84cc16;
+              box-shadow: 0 0 40px rgba(163, 230, 53, 0.6), inset 0 0 30px rgba(163, 230, 53, 0.2);
+          }
+      }
+
+      .cta-button {
+          animation: border-glow 2s ease-in-out infinite;
+          transition: all 0.3s ease;
+      }
+
+      .cta-button:hover {
+          background: linear-gradient(135deg, #a3e635, #84cc16);
+          color: #0b0f0d;
+          transform: scale(1.05);
+      }
+
+      /* Parallax Background Effect */
+      .parallax-section {
+          background-attachment: fixed;
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: cover;
+      }
+
+      /* Camo Pattern Overlay */
+      .camo-overlay {
+          background-image:
+              radial-gradient(circle at 20% 30%, rgba(163, 230, 53, 0.03) 0%, transparent 50%),
+              radial-gradient(circle at 80% 70%, rgba(163, 230, 53, 0.03) 0%, transparent 50%),
+              radial-gradient(circle at 40% 80%, rgba(163, 230, 53, 0.02) 0%, transparent 50%);
+      }
+
+      /* Fade In Animation */
+      @keyframes fadeInUp {
+          from {
+              opacity: 0;
+              transform: translateY(30px);
+          }
+          to {
+              opacity: 1;
+              transform: translateY(0);
+          }
+      }
+
+      .fade-in {
+          animation: fadeInUp 0.8s ease forwards;
+      }
+
+      .fade-in-delay-1 { animation-delay: 0.2s; opacity: 0; }
+      .fade-in-delay-2 { animation-delay: 0.4s; opacity: 0; }
+      .fade-in-delay-3 { animation-delay: 0.6s; opacity: 0; }
+    </style>
+  </head>
+  <body class="bg-[#0b0f0d] text-gray-100">
+    <!-- Navbar -->
+    <nav class="fixed top-0 z-50 w-full border-b border-lime-500/20 bg-[#0b0f0d]/95 backdrop-blur-sm">
+      <div class="mx-auto max-w-7xl px-6 py-4">
+        <div class="flex items-center justify-between">
+          <!-- Logo -->
+          <div class="font-orbitron gradient-text text-3xl font-black tracking-wider">STRIKE</div>
+
+          <!-- Nav Links -->
+          <div class="hidden space-x-8 text-lg font-semibold md:flex">
+            <a href="#home" class="nav-link text-gray-300 hover:text-lime-400">Home</a>
+            <a href="#courses" class="nav-link text-gray-300 hover:text-lime-400">Courses</a>
+            <a href="./about.html" class="nav-link text-gray-300 hover:text-lime-400">About</a>
+            <a href="./contact.html" class="nav-link text-gray-300 hover:text-lime-400">Join</a>
+          </div>
+
+          <!-- Mobile Menu Icon -->
+          <div class="text-2xl text-lime-400 md:hidden">☰</div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="animated-bg camo-overlay relative flex min-h-screen items-center justify-center overflow-hidden pt-20">
+      <div class="z-10 mx-auto max-w-5xl px-6 text-center">
+        <div class="mb-6">
+          <h1 class="font-orbitron mb-6 text-6xl leading-tight font-black md:text-8xl">
+            <span class="gradient-text">TRAIN HARD.</span><br />
+            <span class="text-white">LEARN SMART.</span>
+          </h1>
+        </div>
+
+        <p class="mb-12 text-xl font-light tracking-wide text-gray-300 md:text-2xl">Your friendly battlefield for coding mastery.</p>
+
+        <a href="./contact.html" class="cta-button font-orbitron inline-block rounded-lg border-4 border-lime-400 px-12 py-5 text-xl font-bold text-lime-400"> JOIN THE MISSION </a>
+      </div>
+
+      <!-- Decorative Elements -->
+      <div class="absolute top-20 left-10 text-9xl font-black text-lime-500/10">★</div>
+      <div class="absolute right-10 bottom-20 text-9xl font-black text-lime-500/10">★</div>
+    </section>
+
+    <!-- Rank Stripe Divider -->
+    <div class="rank-stripe"></div>
+
+    <!-- Courses Section -->
+    <section id="courses" class="relative bg-[#1a1f1c] py-24">
+      <div class="mx-auto max-w-7xl px-6">
+        <!-- Section Header -->
+        <div class="mb-16 text-center">
+          <h2 class="font-orbitron gradient-text mb-4 text-5xl font-black md:text-6xl">COMBAT COURSES</h2>
+          <p class="text-xl text-gray-400">Choose your arsenal. Master your craft.</p>
+        </div>
+
+        <!-- Course Cards Grid -->
+        <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+          <!-- Course Card 1 -->
+          <div class="course-card fade-in fade-in-delay-1 rounded-lg border-2 border-lime-500/30 bg-[#0b0f0d] p-8">
+            <div class="mb-4 text-5xl text-lime-400">⚔️</div>
+            <h3 class="font-orbitron mb-3 text-2xl font-bold text-lime-400">FRONTEND ASSAULT</h3>
+            <p class="mb-4 leading-relaxed text-gray-300">Master HTML, CSS, and JavaScript. Build interfaces that command attention and dominate user experience.</p>
+            <div class="flex items-center text-sm text-gray-500">
+              <span class="mr-2">★★★★☆</span>
+              <span>Rank: Specialist</span>
+            </div>
+          </div>
+
+          <!-- Course Card 2 -->
+          <div class="course-card fade-in fade-in-delay-2 rounded-lg border-2 border-lime-500/30 bg-[#0b0f0d] p-8">
+            <div class="mb-4 text-5xl text-lime-400">🛡️</div>
+            <h3 class="font-orbitron mb-3 text-2xl font-bold text-lime-400">BACKEND BOOTCAMP</h3>
+            <p class="mb-4 leading-relaxed text-gray-300">Forge unbreakable server architecture. Deploy databases, APIs, and security protocols like a veteran.</p>
+            <div class="flex items-center text-sm text-gray-500">
+              <span class="mr-2">★★★★★</span>
+              <span>Rank: Lieutenant</span>
+            </div>
+          </div>
+
+          <!-- Course Card 3 -->
+          <div class="course-card fade-in fade-in-delay-3 rounded-lg border-2 border-lime-500/30 bg-[#0b0f0d] p-8">
+            <div class="mb-4 text-5xl text-lime-400">🎯</div>
+            <h3 class="font-orbitron mb-3 text-2xl font-bold text-lime-400">AI RECON</h3>
+            <p class="mb-4 leading-relaxed text-gray-300">Infiltrate the future with machine learning. Train models, deploy intelligence, and stay ahead of the curve.</p>
+            <div class="flex items-center text-sm text-gray-500">
+              <span class="mr-2">★★★★★</span>
+              <span>Rank: Captain</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Rank Stripe Divider -->
+    <div class="rank-stripe"></div>
+
+    <!-- About / Mission Section -->
+    <section id="about" class="camo-overlay bg-[#0b0f0d] py-24">
+      <div class="mx-auto max-w-7xl px-6">
+        <div class="grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
+          <!-- Left: Text Content -->
+          <div>
+            <h2 class="font-orbitron mb-6 text-5xl font-black md:text-6xl">
+              <span class="gradient-text">OUR MISSION</span>
+            </h2>
+            <p class="mb-6 text-xl leading-relaxed text-gray-300">At <span class="font-bold text-lime-400">STRIKE</span>, we believe in discipline, precision, and relentless growth. Our courses are designed with military-grade structure to transform beginners into elite developers.</p>
+            <p class="mb-6 text-xl leading-relaxed text-gray-300">We don't just teach code. We build soldiers of technology—ready to deploy solutions, overcome obstacles, and lead teams with confidence.</p>
+            <div class="flex items-center space-x-6 text-lg font-bold text-lime-400">
+              <div>💪 Discipline</div>
+              <div>🎯 Precision</div>
+              <div>🚀 Excellence</div>
+            </div>
+          </div>
+
+          <!-- Right: Soldier Silhouette -->
+          <div class="flex items-center justify-center">
+            <div class="relative">
+              <svg class="h-96 w-full text-lime-400/20" viewBox="0 0 200 300" fill="currentColor">
+                <!-- Soldier Silhouette -->
+                <path d="M100 20 L120 50 L130 80 L125 120 L135 160 L140 220 L135 280 L125 290 L115 300 L100 295 L85 300 L75 290 L65 280 L60 220 L65 160 L75 120 L70 80 L80 50 Z" />
+                <circle cx="100" cy="30" r="15" />
+                <path d="M125 80 L160 100 L155 130 L130 120" opacity="0.7" />
+                <path d="M75 80 L40 100 L45 130 L70 120" opacity="0.7" />
+              </svg>
+              <div class="glow-border absolute inset-0 rounded-lg"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Rank Stripe Divider -->
+    <div class="rank-stripe"></div>
+
+    <!-- Call to Action Section -->
+    <section id="join" class="relative overflow-hidden bg-[#1a1f1c] py-24 text-center">
+      <div class="relative z-10 mx-auto max-w-4xl px-6">
+        <h2 class="font-orbitron gradient-text mb-6 text-5xl font-black md:text-7xl">ENLIST IN THE CODING FORCE TODAY</h2>
+        <p class="mb-12 text-2xl text-gray-300">Join thousands of developers who've deployed their skills. Your mission starts now.</p>
+        <a href="./contact.html" class="cta-button font-orbitron inline-block rounded-lg border-4 border-lime-400 px-16 py-6 text-2xl font-black text-lime-400"> JOIN NOW </a>
+      </div>
+
+      <!-- Background Decoration -->
+      <div class="absolute top-0 left-0 h-full w-full opacity-5">
+        <div class="absolute top-10 left-10 text-9xl text-lime-400">★</div>
+        <div class="absolute right-10 bottom-10 text-9xl text-lime-400">★</div>
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transform text-[20rem] text-lime-400">★</div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t-2 border-lime-500/30 bg-[#0b0f0d] py-8">
+      <div class="mx-auto max-w-7xl px-6 text-center">
+        <p class="mb-4 text-lg text-gray-400">© 2025 STRIKE | Built with Discipline 💪</p>
+        <div class="flex justify-center space-x-6 text-2xl">
+          <a href="#" class="text-lime-400 transition hover:text-lime-300">📘</a>
+          <a href="#" class="text-lime-400 transition hover:text-lime-300">🐦</a>
+          <a href="#" class="text-lime-400 transition hover:text-lime-300">💼</a>
+          <a href="#" class="text-lime-400 transition hover:text-lime-300">📧</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
